@@ -876,7 +876,7 @@ function bindInput(){
   el.addEventListener('pointerdown',e=>{id=e.pointerId;sx=lx=e.clientX;sy=e.clientY;moved=0;t0=performance.now();drag=true;try{el.setPointerCapture(id)}catch(_){}});
   el.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==id)return;const dx=e.clientX-lx;lx=e.clientX;moved=Math.max(moved,Math.hypot(e.clientX-sx,e.clientY-sy));if(V3.panLim>0&&!V3.tw)V3.pan=Math.max(-V3.panLim,Math.min(V3.panLim,V3.pan+dx))});
   const up=e=>{if(!drag||e.pointerId!==id)return;drag=false;const dt=performance.now()-t0,dx=e.clientX-sx;
-    if(moved<10&&dt<700)pick(e.clientX,e.clientY);else if(V3.panLim<=0&&Math.abs(dx)>60)turn(dx<0?1:-1);else if(V3.panLim>0&&dt<260&&Math.abs(dx)>90)turn(dx<0?1:-1)};
+    if(moved<10&&dt<700)pick(e.clientX,e.clientY)};
   el.addEventListener('pointerup',up);el.addEventListener('pointercancel',()=>{drag=false});
   addEventListener('keydown',e=>{if(!$('#dlg').hidden||$('#hud').hidden)return;if(e.key==='ArrowLeft')turn(-1);if(e.key==='ArrowRight')turn(1)});
 }
